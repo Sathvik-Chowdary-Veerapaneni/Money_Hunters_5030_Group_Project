@@ -237,6 +237,9 @@ div.c {
         const messages_html = document.getElementById("message_ul");
         const chat_area_html = document.getElementById("chat_area")
         document.getElementById("send_button").addEventListener("click", send_message)
+	    
+	// Connect
+        socket.on("connect", function() { socket.emit("user_connection", {"username": username} ); });
     </script>
 </div>
     </center>
