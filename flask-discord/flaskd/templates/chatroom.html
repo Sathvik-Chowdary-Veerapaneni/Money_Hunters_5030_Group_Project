@@ -240,6 +240,13 @@ div.c {
 	    
 	// Connect
         socket.on("connect", function() { socket.emit("user_connection", {"username": username} ); });
+	    
+	// Message sent from server
+        socket.on("message", function(message) { 
+            messages_html.innerHTML += `<li>${message}</li>`;
+            // Auto scroll chat area
+            chat_area_html.scrollTop = chat_area_html.scrollHeight;
+        });
     </script>
 </div>
     </center>
