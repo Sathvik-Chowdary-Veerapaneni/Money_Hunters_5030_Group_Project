@@ -10,10 +10,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
             SECRET_KEY='dev',
             DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-            )
-    socketio = SocketIO(logger=True,engineio_logger=True)
-    socketio.init_app(app)
-
+            )   
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -71,16 +68,4 @@ def create_app(test_config=None):
 
         return render_template('index_count.html',content=num_views)
     
-    #from . import socket
-    #app.register_blueprint(socket.bp)
-
-    @socketio.on('join')
-    def on_join(data):
-        room = data["room"]
-        username = data["username"]
-        timestamp = data["timestamp"]
-        join_room(room)
-        data["message"] = username + " has joined " + room
-        emit("chat message",data,json=True,to=room)
-        
     return app
