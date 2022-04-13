@@ -58,6 +58,22 @@ def create_app(test_config=None):
         del user_database[flask.request.sid]
 
         log(text_to_log = f"{flask.request.sid}: {username} left | Database: {user_database} | {get_current_time()}")
+     
+     # Send message handler
+    @socket_io.on("send_message")
+    def send_message_handler(data:dict):
+        messages_sent.change(by = 1)
+        flask_socketio.send(f"[#{str(messages_sent.count).zfill(4)}] {user_database[flask.request.sid]}: {data['message']}", broadcast = True)
+
+        log(text_to_log = f"{flask.request.sid}: {user_database[flask.request.sid]} sent message with data: \"{data}\" | Database: {user_database} | {get_current_time()}")
+
+    # Message handler
+    @socket_io.on("message")
+    def message_handler(message:str):
+        # print(f"Message recieved at {datetime.datetime.utcnow()} (GMT): \"{message}\"")
+        flask_socketio.send(message, broadcast = True)
+
+        log(text_to_log = f"Sending message to all: {message} | {get_current_time()}")
     
     app.config.from_mapping(
             SECRET_KEY='dev',
