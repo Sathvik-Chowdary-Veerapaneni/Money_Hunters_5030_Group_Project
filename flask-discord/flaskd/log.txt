@@ -1,0 +1,6 @@
+i2M4SvaLgqlkPgiRAAAB: Hola joined | Database: {'i2M4SvaLgqlkPgiRAAAB': 'Hola'} | 04/13/2022
+i2M4SvaLgqlkPgiRAAAB: Hola sent message with data: "{'message': 'Hey Holla'}" | Database: {'i2M4SvaLgqlkPgiRAAAB': 'Hola'} | 04/13/2022
+ZVi73PT4T1Hu3Bf4AAAD: Prabhas joined | Database: {'i2M4SvaLgqlkPgiRAAAB': 'Hola', 'ZVi73PT4T1Hu3Bf4AAAD': 'Prabhas'} | 04/13/2022
+uiFv0hmwmgXQGTCwAAAB: Prabhas joined | Database: {'uiFv0hmwmgXQGTCwAAAB': 'Prabhas'} | 04/13/2022
+uiFv0hmwmgXQGTCwAAAB: Prabhas sent message with data: "{'message': 'dav '}" | Database: {'uiFv0hmwmgXQGTCwAAAB': 'Prabhas'} | 04/13/2022
+uiFv0hmwmgXQGTCwAAAB: Prabhas sent message with data: "{'message': 'S cjkASN'}" | Database: {'uiFv0hmwmgXQGTCwAAAB': 'Prabhas'} | 04/13/2022
