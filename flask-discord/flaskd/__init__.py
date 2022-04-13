@@ -2,15 +2,45 @@ import os
 
 from flask import Flask, render_template, g, session, redirect, url_for
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
+import flask,flask_socketio
+from flask_socketio import SocketIO
+import flask
+import flask_socketio
+import datetime
 
 def create_app(test_config=None):
     # create and configure the app. aka Application Factory
     app = Flask(__name__, instance_relative_config=True)
     
+    # Counter class for user number
+    class Counter:
+        def __init__(self, initial_value:int = 0): self.count = initial_value
+        def change(self, by:int = 1): self.count += by
+            
+    # Setup
+    # app = flask.Flask(__name__, template_folder = "template")
+    app.config["SECRET_KEY"] = "TOTALLY_SECURE"
+    socket_io = flask_socketio.SocketIO(app)
+    user_database = {} #dict file to sotre msgs
+    users_connected = Counter() 
+    messages_sent = Counter()
+    LOG_LOCATION = "log.txt"
+    UTC_TIMEZONE_OFFSET = -4 # EDT
+    
+    # Log
+    def log(text_to_log:str, file:str = LOG_LOCATION):
+        # print(text_to_log)
+        with open (file = LOG_LOCATION, mode = "a") as log_text_file: log_text_file.write(text_to_log + "\n")
+            
+    # Get current time (shifted to timezone)
+    def get_current_time():
+        return (datetime.datetime.utcnow() + datetime.timedelta(hours = UTC_TIMEZONE_OFFSET)).strftime("%m/%d/%Y")
+    
     app.config.from_mapping(
             SECRET_KEY='dev',
             DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
             )   
+    
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
