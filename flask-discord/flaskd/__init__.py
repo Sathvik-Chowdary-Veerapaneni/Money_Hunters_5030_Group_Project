@@ -47,6 +47,18 @@ def create_app(test_config=None):
 
         log(text_to_log = f"{flask.request.sid}: {data['username']} joined | Database: {user_database} | {get_current_time()}")
     
+    # User disconnection handler
+    @socket_io.on("disconnect")
+    def user_disconnection_handler():
+        # username = user_database[flask.request.sid]
+        username = g.user["username"]
+        users_connected.change(by = -1)
+        flask_socketio.send(f"{username} has left the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        # Remove from database
+        del user_database[flask.request.sid]
+
+        log(text_to_log = f"{flask.request.sid}: {username} left | Database: {user_database} | {get_current_time()}")
+    
     app.config.from_mapping(
             SECRET_KEY='dev',
             DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
