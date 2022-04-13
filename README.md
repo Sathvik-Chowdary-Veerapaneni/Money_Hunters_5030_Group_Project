@@ -9,6 +9,25 @@
 
 **Trello**: [link](https://trello.com/b/uMw7mjYG/project-management)
 
+
+## To run the chat application
+*Clone the repository to local machine*
+
+*Create new enviroment* `python -m venv env`
+
+**With in the environment** 
+1. Install the required dependencies in the enivroment from [requirements.txt](https://github.com/Sathvik-Chowdary-Veerapaneni/Money_Hunters_5030_Group_Project/tree/develop/flask-discord/flaskd) 
+`pip install -r requirements.txt`
+2. run the `db.py` file
+3. *Intialize databse* using `flask init-db` in terminal
+4. from terminal change directory to flask-discord 
+5. `SET FLASK_APP=flaskd`
+6. `SET FLASK_ENV=development`
+7. `flask run`
+  
+
+
+
 ## Tests
 
 Backend tests are ran using the module pytest and are located in the project directory `flask-discord/backend_tests`.     
