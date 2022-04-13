@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,11 +119,11 @@ body {
    background-color: #000805;
    border: none;
    color: rgb(249, 246, 246);
-   padding: 11px;
+   padding: 4px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   font-size: 15px;
+   font-size: 12.5px;
    margin: 1px 1px;
    border-radius: 10%;
   }
@@ -147,7 +148,6 @@ body {
     border-radius: 60px;
     cursor: pointer;
     position: fixed;
-    bottom:225px;
     
       
   }
@@ -174,6 +174,11 @@ body {
 
 .room:hover .roombtn {background-color: #3e8e41;}
 
+div.c {
+  text-align: right;
+}
+
+
 </style>
 <title> MONEY HUNTERS </title>
 
@@ -189,88 +194,46 @@ body {
 <h3 class="font-effect-fire"> HOLA {{username}} <h3> </center>
 
 </td>
-
-
-
-
 <tr valign="top">
-<td bgcolor="#aaa" height="600"  width="250">
-
-
-<center>
-    <div class="room">
-        <button class="roombtn">Choose chat room</button>
-        <div class="room-content">
-          <a href="file:///C:/Users/maley/Desktop/cccc/home.html">Home</a>
-          <a href="file:///C:/Users/maley/Desktop/cccc/chatroom2.html">Chat Room 2</a>
-          
-        </div>
-      </div>
+    <td bgcolor="#aaa" height="600"  width="250">
     
-        <h4>Messages</h4>
-        <input type="radio" id="html"  value="Friend 1">
-        <label for="html">Friend 1</label><br>
-        <input type="radio" id="html"  value="Friend 2">
-        <label for="html">Friend 2</label><br>
-        <input type="radio" id="html"  value="Friend 3">
-        <label for="html">Friend 3</label><br>
-        
-
-</center>
-</td>
-
-<td  bgcolor= "#eee" height="600" width="1100">
-<center>
-<center>
-
-	<div class="container">
-			<div class="chat">
-				<div class="chat-header">
-					<div class="profile">
-						<div class="left">
-							<h2>CHATROOM1</h2>
-						</div>
-					</div>
-				</div>
-		  <div class="chat-box">
-					<div class="chat-r">
-						<div class="sp"></div>
-						<div class="mess mess-r">
-							<p>
-						Sender message
-							</p>
-							
-						</div>
-					</div>
-					<div class="chat-r">
-						<div class="mess">
-							<p>
-						Reciever message
-							</p>
-						
-						</div>
-					</div>
-						<div class="sp"></div>
-					</div>
-					
-			  
-		</div>
-        <div class="chat-footer">
-            <textarea placeholder="Type a message"></textarea>
-        <button class="button5" type="submit">></button>
-        </div>
-</center>
-</center>
-</td>
-
-
-
-
-</tr>
-
-
-</table>
-</center>
-</body>
-</html>
+    
+    <center>
+        <div class="room">
+            <button class="roombtn">Choose</button>
+            <div class="room-content">
+              <a href="/">Home</a>
+            </div>
+          </div>
+      
+    
+    </center>
+    </td>
+    
+    <td  bgcolor= "#eee" height="600" width="1100">
+    <center>
+    <center>
+      
+    </div>
+            
+              <label><input type = "text" id = "message_input" size="50"></label></div>
+               
+            <button type = "button" id = "send_button" class = "button5">Send </button>
+            </div>
+            
+            <div class = "chat_area overflow_scroll" id = "chat_area" style = "height: 800px;">
+                
+                <ul id = "message_ul"></ul>
+            </iframe>
+</div>
+    </center>
+    </center>
+    </td>
+    </tr>
+    </table>
+    </center>
+    </body>
+    </html>
+ 
+ 
 
