@@ -36,6 +36,17 @@ def create_app(test_config=None):
     def get_current_time():
         return (datetime.datetime.utcnow() + datetime.timedelta(hours = UTC_TIMEZONE_OFFSET)).strftime("%m/%d/%Y")
     
+    # Chatroom functions ==============================================================================
+    # User connection handler
+    @socket_io.on("user_connection")
+    def user_connect_handler(data:dict):
+        users_connected.change(by = 1)
+        flask_socketio.send(f"{data['username']} has joined the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        # Add to database
+        user_database[flask.request.sid] = data["username"]
+
+        log(text_to_log = f"{flask.request.sid}: {data['username']} joined | Database: {user_database} | {get_current_time()}")
+    
     app.config.from_mapping(
             SECRET_KEY='dev',
             DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
