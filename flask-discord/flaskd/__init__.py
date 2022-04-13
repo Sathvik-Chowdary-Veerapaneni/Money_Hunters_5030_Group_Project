@@ -1,22 +1,24 @@
 import os
 
-from flask import Flask, render_template, g, session, redirect, url_for
-from flask_socketio import SocketIO, send, emit, join_room, leave_room
+from flask import Flask, render_template, g, session, redirect, url_for,request
+#
 import flask,flask_socketio
 from flask_socketio import SocketIO
 import flask
 import flask_socketio
 import datetime
+#
 
 def create_app(test_config=None):
     # create and configure the app. aka Application Factory
     app = Flask(__name__, instance_relative_config=True)
-    
+    #########
+
     # Counter class for user number
     class Counter:
         def __init__(self, initial_value:int = 0): self.count = initial_value
         def change(self, by:int = 1): self.count += by
-            
+
     # Setup
     # app = flask.Flask(__name__, template_folder = "template")
     app.config["SECRET_KEY"] = "TOTALLY_SECURE"
@@ -26,12 +28,11 @@ def create_app(test_config=None):
     messages_sent = Counter()
     LOG_LOCATION = "log.txt"
     UTC_TIMEZONE_OFFSET = -4 # EDT
-    
+
     # Log
     def log(text_to_log:str, file:str = LOG_LOCATION):
         # print(text_to_log)
         with open (file = LOG_LOCATION, mode = "a") as log_text_file: log_text_file.write(text_to_log + "\n")
-            
     # Get current time (shifted to timezone)
     def get_current_time():
         return (datetime.datetime.utcnow() + datetime.timedelta(hours = UTC_TIMEZONE_OFFSET)).strftime("%m/%d/%Y")
@@ -46,7 +47,7 @@ def create_app(test_config=None):
         user_database[flask.request.sid] = data["username"]
 
         log(text_to_log = f"{flask.request.sid}: {data['username']} joined | Database: {user_database} | {get_current_time()}")
-    
+
     # User disconnection handler
     @socket_io.on("disconnect")
     def user_disconnection_handler():
@@ -58,8 +59,8 @@ def create_app(test_config=None):
         del user_database[flask.request.sid]
 
         log(text_to_log = f"{flask.request.sid}: {username} left | Database: {user_database} | {get_current_time()}")
-     
-     # Send message handler
+
+    # Send message handler
     @socket_io.on("send_message")
     def send_message_handler(data:dict):
         messages_sent.change(by = 1)
@@ -74,12 +75,27 @@ def create_app(test_config=None):
         flask_socketio.send(message, broadcast = True)
 
         log(text_to_log = f"Sending message to all: {message} | {get_current_time()}")
-    
+    # Website navigation =============================================================================
+
+    # Chatroom
+    @app.route("/chatroom", methods = ["POST", "GET"])
+    def chatroom():
+        # Send to chatroom with username
+        username = g.user["username"]
+        return flask.render_template("chatroom.html", username = username)
+
+    # Run
+    if __name__ == "__main__":
+        socket_io.run(app)
+
+    ###################
+
+
     app.config.from_mapping(
             SECRET_KEY='dev',
             DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-            )   
-    
+            )
+
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -109,12 +125,12 @@ def create_app(test_config=None):
         return render_template('layout.html',username=username)
 
     #Logout redirects to login page
-    @app.route('/logout')
+    @app.route("/logout",methods=("GET","POST"))
     def logout():
-        if request.method=="POST":
+        if request.method == "POST":
             session.clear()
-            return redirect(url_for('auth.login'))
-    
+        return redirect(url_for('auth.login'))
+
     # a simple page that prints the view number
     # index page
     @app.route('/count')
@@ -136,5 +152,4 @@ def create_app(test_config=None):
                 ).fetchone()[0] #Fetchone returns tuple. 1st element contains row value
 
         return render_template('index_count.html',content=num_views)
-    
     return app
