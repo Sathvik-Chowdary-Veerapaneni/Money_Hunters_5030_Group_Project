@@ -247,6 +247,9 @@ div.c {
             // Auto scroll chat area
             chat_area_html.scrollTop = chat_area_html.scrollHeight;
         });
+	    
+	  // Send a message to the server
+        function send_message() { socket.emit("send_message", {"message": message_html.value}); }
     </script>
 </div>
     </center>
