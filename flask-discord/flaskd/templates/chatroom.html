@@ -225,6 +225,19 @@ div.c {
                 
                 <ul id = "message_ul"></ul>
             </iframe>
+	  <!-- Socket IO JavaScript library -->
+    <script type="text/javascript" src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>
+
+    <!-- Main JavaScript for displaying messages. -->
+    <script>
+        // Setup
+        const socket = io("http://127.0.0.1:5000");
+        const username = "{{ username }}";
+        const message_html = document.getElementById("message_input");
+        const messages_html = document.getElementById("message_ul");
+        const chat_area_html = document.getElementById("chat_area")
+        document.getElementById("send_button").addEventListener("click", send_message)
+    </script>
 </div>
     </center>
     </center>
