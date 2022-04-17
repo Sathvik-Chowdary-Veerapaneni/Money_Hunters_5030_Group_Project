@@ -38,3 +38,6 @@ To run backend tests:
 `pip install flask flask-socketio pytest`
 3. In the flask-discord directory, run:  
 `python3 -m pytest backend_tests/`
+
+TO run client tests:
+1. run `python -m pytest client_tests`
