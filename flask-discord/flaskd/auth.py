@@ -59,7 +59,7 @@ def change_username():
         db = get_db()
         db.execute("UPDATE user SET username =? WHERE email=?",(new_username,email))
         db.commit()
-    return render_template("settings.html")
+    return render_template("settings.html",passing_token=current_app.config['TOKEN'])
 
 @bp.route("/login",methods=("GET","POST"))
 def login():
@@ -80,6 +80,14 @@ def login():
         if error == None:
             session.clear()
             session["user_id"] = user["id"]
+            payload={
+                "user_email":user["email"],
+                "user_ID":user["id"],
+                "user_password":user["password"]
+                }
+            current_app.config['TOKEN']=jwt.encode({'data':payload, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)},current_app.config['SECRET_KEY'])
+            print(current_app.config['TOKEN'])
+            make_response(jsonify({'token':current_app.config['TOKEN'].decode('UTF-8')}),201)
 
             return redirect(url_for("index"))
 
