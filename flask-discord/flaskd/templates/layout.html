@@ -8,11 +8,12 @@ body {
   font-size: 20px;
 }
 .roombtn {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #d9d9d9c5;
+  color: #555;
   padding: 16px;
   font-size: 16px;
   border: none;
+  border-radius: 10%
 }
 
 .room {
@@ -40,10 +41,10 @@ body {
 
 .room:hover .room-content {display: block;}
 
-.room:hover .roombtn {background-color: #3e8e41;}
+.room:hover .roombtn {background-color: #d9d9d9;}
 .settingsbtn {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #d9d9d9;
+  color: #555;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -140,9 +141,9 @@ body {font-family: "Lato", sans-serif;}
  
   
   .button5{
-   background-color: #000805;
+   background-color: #d9d9d9;
    border: none;
-   color: rgb(249, 246, 246);
+   color: #555;
    padding: 11px;
    text-align: center;
    text-decoration: none;
@@ -274,6 +275,8 @@ ul li.checked::before {
   padding: 30px 40px;
   color: white;
   text-align: center;
+  
+  
 }
 
 /* Clear floats after the header */
@@ -305,7 +308,7 @@ input {
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 0;
+  border-radius: 10%;
 }
 
 .addBtn:hover {
@@ -330,7 +333,10 @@ input {
             font-size: 1.2em;
             font-style: bold;
         }
-
+.chat_areaoverflow_scroll
+{
+    overflow: scroll;
+}
 </style>
 <title> MONEY HUNTERS </title>
 
@@ -343,15 +349,14 @@ input {
 
 <td colspan="3" bgcolor="gray">
   <center> 
-<h3 class="font-effect-fire"> HOLA {{username}} <h3> </center>
+<h3 class="font-effect-fire"> Chat Hub <h3> </center>
     <form action="/logout" method="post">
 	  
         <div class="c">
           <button style='font-size:24px'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" radius="10" fill="red" class="bi bi-power" viewBox="0 0 16 16">
                   <path d="M7.5 1v7h1V1h-1z"/>
-                  <path d="M3 8.812a4.999 4.9r
-			   99 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                  <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
                 </svg><i class='fas fa-sign-out-alt'></i>
           </form>
           </button>
@@ -402,6 +407,7 @@ input {
       showTime();
     </script>
     <br>
+        
     <div class="settings">
         <button class="roombtn">settings</button>
         <div class="settings-content">
@@ -419,7 +425,47 @@ input {
 </td>
 
 <td  bgcolor= "#aaa" height="500" width="850">
+    <center>          
+    </div>
+    
+      <label><input type = "text" id = "message_input" placeholder="Type Your Message..." size="50"></label></div>
+       
+    <button type = "button" id = "send_button" class = "button5">Send </button>
+    </div>
+    
+    <div class = "chat_areaoverflow_scroll" id = "chat_area" style = "height: 800px;">
+        
+        <ul id = "message_ul"></ul>
+    </iframe>
 
+    <!-- Socket IO JavaScript library -->
+<script type="text/javascript" src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>
+
+<!-- Main JavaScript -->
+<script>
+// Setup
+const socket = io("http://127.0.0.1:5000");
+const username = "{{ username }}";
+const message_html = document.getElementById("message_input");
+const messages_html = document.getElementById("message_ul");
+const chat_area_html = document.getElementById("chat_area")
+document.getElementById("send_button").addEventListener("click", send_message)
+
+// Connect
+socket.on("connect", function() { socket.emit("user_connection", {"username": username} ); });
+
+// Message sent from server
+socket.on("message", function(message) { 
+    messages_html.innerHTML += `<li>${message}</li>`;
+    // Auto scroll chat area
+    chat_area_html.scrollTop = chat_area_html.scrollHeight;
+});
+
+// Send a message to the server
+function send_message() { socket.emit("send_message", {"message": message_html.value}); }
+</script>
+</div>
+</center>
 </td>
 
 
