@@ -8,7 +8,38 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskd.db import get_db
 
+# imports for PyJWT authentication
+import jwt
+import datetime
+from functools import wraps
+from flask import Flask, request, jsonify, make_response, current_app
+
 bp = Blueprint('auth',__name__,url_prefix='/auth')
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token')
+        # jwt is passed in the request header
+        if 'x_access_token' in request.headers:
+            token = request.headers['x-access-token']
+
+        # return 401 if token is not passed
+        if not token:
+            return jsonify({'message' : 'Token is missing !!'}), 401
+  
+        try:
+            # decoding the payload to fetch the stored details
+            data = jwt.decode(current_app.config['TOKEN'], current_app.config['SECRET_KEY'])
+            # print(data)
+        except:
+            return jsonify({
+                'message' : 'Token is invalid !!'
+            }), 401
+        # returns the current logged in users contex to the routes
+        return  f(*args, **kwargs)
+    return decorated
+
 
 def login_required(view):
     @functools.wraps(view)
