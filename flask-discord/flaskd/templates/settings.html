@@ -47,7 +47,7 @@ div {
 <td> 
 
 <div class="container">
-  <form action="/auth/settings" method="post">
+  <form action="/auth/settings?token={{passing_token}}" method="post">
     <div class="mb-3">
       <label for="Change Username" class="form-label"> Change Username</label>
       <input type="text" class="form-control" id="uname" name="uname">

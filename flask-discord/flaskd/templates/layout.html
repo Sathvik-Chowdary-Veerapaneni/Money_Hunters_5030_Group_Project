@@ -8,12 +8,11 @@ body {
   font-size: 20px;
 }
 .roombtn {
-  background-color: #d9d9d9c5;
-  color: #555;
+  background-color: #04AA6D;
+  color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
-  border-radius: 10%
 }
 
 .room {
@@ -41,10 +40,10 @@ body {
 
 .room:hover .room-content {display: block;}
 
-.room:hover .roombtn {background-color: #d9d9d9;}
+.room:hover .roombtn {background-color: #3e8e41;}
 .settingsbtn {
-  background-color: #d9d9d9;
-  color: #555;
+  background-color: #04AA6D;
+  color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -134,16 +133,15 @@ body {font-family: "Lato", sans-serif;}
 
 
   .container {
-    width: 1100px;
-    margin: auto;
+    overflow :scroll;
   }
  
  
   
   .button5{
-   background-color: #d9d9d9;
+   background-color: #000805;
    border: none;
-   color: #555;
+   color: rgb(249, 246, 246);
    padding: 11px;
    text-align: center;
    text-decoration: none;
@@ -236,25 +234,7 @@ ul li:hover {
 }
 
 /* When clicked on, add a background color and strike out text */
-ul li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
 
-/* Add a "checked" mark when clicked on */
-ul li.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-}
 
 /* Style the close button */
 .close {
@@ -275,8 +255,6 @@ ul li.checked::before {
   padding: 30px 40px;
   color: white;
   text-align: center;
-  
-  
 }
 
 /* Clear floats after the header */
@@ -308,7 +286,7 @@ input {
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 10%;
+  border-radius: 0;
 }
 
 .addBtn:hover {
@@ -333,10 +311,10 @@ input {
             font-size: 1.2em;
             font-style: bold;
         }
-.chat_areaoverflow_scroll
-{
-    overflow: scroll;
+.chat_areaoverflow_scroll{
+  overflow: scroll;
 }
+
 </style>
 <title> MONEY HUNTERS </title>
 
@@ -350,18 +328,14 @@ input {
 <td colspan="3" bgcolor="gray">
   <center> 
 <h3 class="font-effect-fire"> Chat Hub <h3> </center>
-    <form action="/logout" method="post">
-	  
-        <div class="c">
-          <button style='font-size:24px'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" radius="10" fill="red" class="bi bi-power" viewBox="0 0 16 16">
-                  <path d="M7.5 1v7h1V1h-1z"/>
-                  <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-                </svg><i class='fas fa-sign-out-alt'></i>
-          </form>
-          </button>
-       </div>
-
+  <form action="/logout" method="post">
+    <div class="c">
+      <button style='font-size:24px'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+              <path d="M7.5 1v7h1V1h-1z"/>
+              <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+            </svg>logout <i class='fas fa-sign-out-alt'></i>
+      </form>
 </td>
 
 
@@ -405,18 +379,16 @@ input {
       }
   
       showTime();
-    </script>
-    <br>
-        
-    <div class="settings">
-        <button class="roombtn">settings</button>
-        <div class="settings-content">
-        <a href="/auth/settings" class="btn btn-primary btn-sm">Change Username </a>
-          
-        </div>
-      </div>
-    
-    
+    </script><br>
+      <center>
+        <div class="settings">
+            <button class="roombtn">settings</button>
+            <div class="settings-content">
+              <a href="/auth/settings?token={{passing_token}}" class="btn btn-primary btn-sm"> Change Username </a>
+              
+            </div>
+          </div>
+          </center>
 </form>
     
       
@@ -424,21 +396,21 @@ input {
 </center>
 </td>
 
-<td  bgcolor= "#aaa" height="500" width="850">
-    <center>          
-    </div>
-    
-      <label><input type = "text" id = "message_input" placeholder="Type Your Message..." size="50"></label></div>
-       
-    <button type = "button" id = "send_button" class = "button5">Send </button>
-    </div>
-    
-    <div class = "chat_areaoverflow_scroll" id = "chat_area" style = "height: 800px;">
-        
-        <ul id = "message_ul"></ul>
-    </iframe>
+<td  bgcolor= "#aaa" height="600" width="850">
+  <center>          
+  </div>
+  
+    <label><input type = "text" id = "message_input" size="50" placeholder="Type Your Message...."></label></div>
+     
+  <button type = "button" id = "send_button" class = "button5">Send </button>
+  </div>
+  
+  <div class = "chat_areaoverflow_scroll" id = "chat_area" style = "height: 600px;">
+      
+      <ul id = "message_ul"></ul>
+  </iframe>
 
-    <!-- Socket IO JavaScript library -->
+  <!-- Socket IO JavaScript library -->
 <script type="text/javascript" src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>
 
 <!-- Main JavaScript -->
@@ -456,9 +428,9 @@ socket.on("connect", function() { socket.emit("user_connection", {"username": us
 
 // Message sent from server
 socket.on("message", function(message) { 
-    messages_html.innerHTML += `<li>${message}</li>`;
-    // Auto scroll chat area
-    chat_area_html.scrollTop = chat_area_html.scrollHeight;
+  messages_html.innerHTML += `<li>${message}</li>`;
+  // Auto scroll chat area
+  chat_area_html.scrollTop = chat_area_html.scrollHeight;
 });
 
 // Send a message to the server
@@ -466,10 +438,10 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
 </script>
 </div>
 </center>
+
+
 </td>
-
-
-<td  bgcolor= "#aaa" height="500" width="250">
+<td  bgcolor= "#aaa" height="600" width="250">
 <center>
   <h3 style="margin:5px">My To Do List</h3>
     
@@ -550,12 +522,6 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
 </div>
 </center>
 </tr>
-
-
-
-
- 
-
 
 </table>
 </center>

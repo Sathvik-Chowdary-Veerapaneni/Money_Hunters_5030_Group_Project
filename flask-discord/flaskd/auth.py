@@ -1,3 +1,4 @@
+import email
 import functools
 
 from flask import ( 
@@ -7,12 +8,23 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskd.db import get_db
-
 # imports for PyJWT authentication
 import jwt
 import datetime
 from functools import wraps
 from flask import Flask, request, jsonify, make_response, current_app
+
+#imports for image upload
+import urllib.request
+from flask import Flask, flash, request, redirect, url_for, render_template
+from werkzeug.utils import secure_filename
+from os.path import join, dirname, realpath
+import os   
+
+# from flask_wtf.file import FileField
+# from wtforms import SubmitField
+# from flask_wtf import Form
+
 
 bp = Blueprint('auth',__name__,url_prefix='/auth')
 
@@ -38,8 +50,8 @@ def token_required(f):
             }), 401
         # returns the current logged in users contex to the routes
         return  f(*args, **kwargs)
+  
     return decorated
-
 
 def login_required(view):
     @functools.wraps(view)
@@ -51,6 +63,7 @@ def login_required(view):
 
 @bp.route("/settings",methods=("GET","POST"))
 @login_required
+@token_required
 def change_username():
     if request.method == "POST":
         new_username=request.form["uname"]
@@ -88,9 +101,7 @@ def login():
             current_app.config['TOKEN']=jwt.encode({'data':payload, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)},current_app.config['SECRET_KEY'])
             print(current_app.config['TOKEN'])
             make_response(jsonify({'token':current_app.config['TOKEN'].decode('UTF-8')}),201)
-
             return redirect(url_for("index"))
-
         flash(error)
 
     return render_template("login.html")
@@ -137,4 +148,4 @@ def load_logged_in_user():
         g.user = get_db().execute(
                 'SELECT * FROM user WHERE id = ?', (user_id,)
                 ).fetchone() # Grabs all columns in the user table where user_id is found. Load this in the session
-
+                

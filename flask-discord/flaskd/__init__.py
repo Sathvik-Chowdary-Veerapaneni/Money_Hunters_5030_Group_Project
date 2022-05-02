@@ -8,12 +8,10 @@ import flask
 import flask_socketio
 import datetime
 #
-#imports for image upload
 import urllib.request
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from os.path import join, dirname, realpath
-import os   
 
 def create_app(test_config=None):
     # create and configure the app. aka Application Factory
@@ -21,6 +19,7 @@ def create_app(test_config=None):
     app.config["SECRET_KEY"] = "TOTALLY_SECURE"
     app.app_context().push() #to use create_app in auth
     #########
+
     # ### uploading image#####
     UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/images/..')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -59,6 +58,7 @@ def create_app(test_config=None):
         #print('display_image filename: ' + filename)
         return redirect(url_for('static', filename='uploads/' + filename), code=301)
         ### uploading image ending #####
+
     # Counter class for user number
     class Counter:
         def __init__(self, initial_value:int = 0): self.count = initial_value
@@ -167,7 +167,7 @@ def create_app(test_config=None):
     def index():
         username = g.user["username"] # Grabs username from database fetch stored in g upon user request of the page
                                       # Stored in auth.py
-        return render_template('layout.html',username=username)
+        return render_template('layout.html',username=username,passing_token=app.config['TOKEN'])
 
     #Logout redirects to login page
     @app.route("/logout",methods=("GET","POST"))
