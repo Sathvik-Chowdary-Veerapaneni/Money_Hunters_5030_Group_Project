@@ -459,7 +459,17 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
         <span onclick="newElement()" class="addBtn">Add</span>
       
       </div>
-      
+	
+      <script>
+        var input = document.getElementById("myInput");
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById(newElement()).click();
+          }
+        });
+      </script>
+	
       <ul id="myUL">
         
       </ul>
