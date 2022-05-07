@@ -101,6 +101,7 @@ def login():
             current_app.config['TOKEN']=jwt.encode({'data':payload, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)},current_app.config['SECRET_KEY'])
             print(current_app.config['TOKEN'])
             make_response(jsonify({'token':current_app.config['TOKEN'].decode('UTF-8')}),201)
+            current_app.config["count"]+=1
             return redirect(url_for("index"))
         flash(error)
 
