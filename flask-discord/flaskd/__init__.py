@@ -109,8 +109,7 @@ def create_app(test_config=None):
     @socket_io.on("send_message")
     def send_message_handler(data:dict):
         messages_sent.change(by = 1)
-        flask_socketio.send(f"[#{str(messages_sent.count).zfill(4)}] {user_database[flask.request.sid]}: {data['message']}", broadcast = True)
-
+        flask_socketio.send(f"{user_database[flask.request.sid]}: {data['message']}", broadcast = True)
         log(text_to_log = f"{flask.request.sid}: {user_database[flask.request.sid]} sent message with data: \"{data}\" | Database: {user_database} | {get_current_time()}")
 
     # Message handler
