@@ -58,6 +58,10 @@ div {
     <label  for="Password" class="form-label">Password</label>
     <input type="password" class="form-control" id="Password" name="password">
   </div>
+  <div class="mb-3">
+    <label  for="Password" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="Confirm Password" name="Confirm Password">
+  </div>	  
   <button type="submit" class="btn btn-primary">Register</button>
   {% for message in get_flashed_messages() %}
   <div class="flash"><strong>{{ message }}</strong></div>
