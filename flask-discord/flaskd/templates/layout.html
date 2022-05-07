@@ -8,11 +8,16 @@ body {
   font-size: 20px;
 }
 .roombtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
+  background-color: #4267B2;
+   border: none;
+   color: white;
+   padding: 11px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 15px;
+   margin: 1px 1px;
+   border-radius: 10%;
 }
 
 .room {
@@ -40,9 +45,9 @@ body {
 
 .room:hover .room-content {display: block;}
 
-.room:hover .roombtn {background-color: #3e8e41;}
+.room:hover .roombtn {background-color: #4267B2;}
 .settingsbtn {
-  background-color: #04AA6D;
+  background-color: #4267B2;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -78,6 +83,11 @@ body {
 div.c {
   text-align: right;
 } 
+.chat_areaoverflow_scroll{
+  width: calc(100vw - 50vw);
+    height: calc(100vw - 50vw);
+    overflow: scroll;
+}
 * {box-sizing: border-box}
 body {font-family: "Lato", sans-serif;}
 
@@ -139,9 +149,9 @@ body {font-family: "Lato", sans-serif;}
  
   
   .button5{
-   background-color: #000805;
+   background-color: #4267B2;
    border: none;
-   color: rgb(249, 246, 246);
+   color: white;
    padding: 11px;
    text-align: center;
    text-decoration: none;
@@ -155,13 +165,13 @@ body {font-family: "Lato", sans-serif;}
     width: 5px;
   }
   *::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: white;
   }
   *::-webkit-scrollbar-thumb {
-    background: #aaa;
+    background: #4267B2;
   }
   *::-webkit-scrollbar-thumb:hover {
-    background: rgb(244, 241, 241);
+    background: white;
   }
   
   .chat-footer {
@@ -229,6 +239,7 @@ ul li:nth-child(odd) {
 }
 
 /* Darker background-color on hover */
+
 /* When clicked on, add a background color and strike out text */
 
 
@@ -247,7 +258,7 @@ ul li:nth-child(odd) {
 
 /* Style the header */
 .header {
-  background-color: #aaa;
+  background-color: white;
   padding: 30px 40px;
   color: white;
   text-align: center;
@@ -265,6 +276,7 @@ input {
   margin: 0;
   border: none;
   border-radius: 0;
+  border: 2px solid #4267B2;
   width: 75%;
   padding: 10px;
   float: left;
@@ -273,16 +285,16 @@ input {
 
 /* Style the "Add" button */
 .addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
+  background-color: #4267B2;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 1px 1px;
+    border-radius: 10%;
 }
 
 .addBtn:hover {
@@ -292,12 +304,12 @@ input {
             font-family: sans-serif;
             text-align:center;
             max-width: 250px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
             padding: 20px;
         }
         .profile__image{
-            width: 150    px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
             border-radius: 50%;
             margin: 0 auto 20px auto;
@@ -310,99 +322,128 @@ input {
 .chat_areaoverflow_scroll{
   overflow: scroll;
 }
+.todolist_scroll{
+  overflow: scroll;
+}
+
+h1 {
+
+color: white;
+}
 
 </style>
 <title> MONEY HUNTERS </title>
 
 </head>
-<body style="background-color: #565454;"> 
+<body style="background-color: black;"> 
 <center>
 <table>
   
 <tr>
-
-<td colspan="3" bgcolor="gray">
+  
+<td colspan="3" height="50" bgcolor="#4267B2">
+ 
   <center> 
-<h3 class="font-effect-fire"> Chat Hub <h3> </center>
+
+<h1 class="font-effect-fire">Chat Hub <h1> </center>
   <form action="/logout" method="post">
     <div class="c">
+      <!-- logout button -->
+      <button style='font-size:24px'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+              <path d="M7.5 1v7h1V1h-1z"/>
+              <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+            </svg> <i class='fas fa-sign-out-alt'></i>
+  </form>
+      </button>
+   </div>
+
+    <!-- <div class="c">
       <button style='font-size:24px'>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
               <path d="M7.5 1v7h1V1h-1z"/>
               <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
             </svg>logout <i class='fas fa-sign-out-alt'></i>
+      </div> -->
       </form>
 </td>
 
 
 
 <tr valign="top">
-<td bgcolor="#aaa" height="500"  width="250">
+<td bgcolor="white" height="500"  width="250">
 
-<form class = "chat_area" action = "/chatroom", method = "POST">
-<center>
-	  <div class="profile">
-        <image src="{{ url_for('static', filename = 'images/dp.png')}}" alt="profile image" class="profile__image">
-        <div class="profile__name"> {{username}}</div>
-    </div>
-    <br>
-    <div id="MyClockDisplay"></div>
-    <script type="text/javascript">
-      function showTime(){
-        var date = new Date();
-        var h = date.getHours();
-        var m = date.getMinutes();
-        var s = date.getSeconds();
-        var session ="AM";
-        
-        if(h==0){
-          h=12;
-        }
-        if(h>12){
-          h = h-12;
-          session = "PM";
-        }
+<form class = "chat_area" method = "POST">
   
-        h = (h < 10) ? "0" + h:h;
-        m = (m < 10) ? "0" + m:m;
-        s = (s < 10) ? "0" + s:s;
-  
-        var time = h + ":" + m +":" + s + " " +session;
-        document.getElementById("MyClockDisplay").innerText = time;
-        document.getElementById("MyClockDisplay").textContent = time;
-  
-        setTimeout(showTime,1000);
-      }
-  
-      showTime();
-    </script><br>
-      <center>
-        <div class="settings">
-            <button class="roombtn">settings</button>
-            <div class="settings-content">
-              <a href="/auth/settings?token={{passing_token}}" class="btn btn-primary btn-sm"> Change Username </a>
-              
-            </div>
-          </div>
-          </center>
-</form>
+  <center>
+      <div class="profile">
+          <image src="{{ url_for('static', filename = 'images/dp.png')}}" alt="profile image" class="profile__image">
+          <div class="profile__name"> {{username}}</div>
+      </div>
+      <br>
+      <div id="MyClockDisplay"></div>
+      <script type="text/javascript">
+        function showTime(){
+          var date = new Date();
+          var h = date.getHours();
+          var m = date.getMinutes();
+          var s = date.getSeconds();
+          var session ="AM";
+          
+          if(h==0){
+            h=12;
+          }
+          if(h>12){
+            h = h-12;
+            session = "PM";
+          }
     
-      
+          h = (h < 10) ? "0" + h:h;
+          m = (m < 10) ? "0" + m:m;
+          s = (s < 10) ? "0" + s:s;
+    
+          var time = h + ":" + m +":" + s + " " +session;
+          document.getElementById("MyClockDisplay").innerText = time;
+          document.getElementById("MyClockDisplay").textContent = time;
+    
+          setTimeout(showTime,1000);
+        }
+    
+        showTime();
+      </script>
+      <br>
+    </center>
+</form>
 
+
+<center>
+  <div class="settings">
+    <button class="roombtn">settings</button>
+      <div class="settings-content">
+        <a href="/auth/settings?token={{passing_token}}" class="btn btn-primary btn-sm"> Change Username </a>  
+      </div>
+  </div>
 </center>
+
 </td>
 
-<td  bgcolor= "#aaa" height="600" width="850">
-  <center>          
-  <div class="mb-3">
-	  <input type="text" class="form-control" id="message_input" size="=50"  placeholder=" Type your Message..." onfocus="this.value=''" value="" name="message_input">
-	</div>
+<td  bgcolor= "white" height="600" width="850">
   
-    
-  <div>   
-  <button type = "button" id = "send_button" class = "button5">Send </button>
+  <center>          
+    <div class="mb-3">
+      <!-- <label for="Email" class="form-label">Email</label> -->
+      <input type="text" class="form-control" id="message_input" size="=50"  placeholder=" Type your Message..." onfocus="this.value=''" value="" name="message_input">
+    </div>
+
+    <!-- <div class="mb-3">
+    <label>
+      <input type = "text" id = "message_input" size="50" placeholder="Type Your Message..." name="message_input">
+    </label>
+  </div> -->
+  <div>
+    <button type = "button" id = "send_button" class = "button5">Send </button>
   </div>
-	  
+  
 <script>
   var input = document.getElementById("message_input");
   input.addEventListener("keypress", function(event) {
@@ -413,7 +454,8 @@ input {
     }
   });
 </script>
-  <div class = "chat_areaoverflow_scroll" id = "chat_area" style = "height: 600px;">
+
+  <div class = "chat_areaoverflow_scroll" class="header" id = "chat_area" style = "height: 600px;">
       
       <ul id = "message_ul"></ul>
   </iframe>
@@ -449,17 +491,16 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
 
 
 </td>
-<td  bgcolor= "#aaa" height="600" width="250">
+<td  class = "chat_areaoverflow_scroll" bgcolor= "white" height="600" width="250">
 <center>
   <h3 style="margin:5px">My To Do List</h3>
     
     <div id="myDIV" class="header">
-       
         <input type="text" id="myInput" placeholder="Title...">
         <span onclick="newElement()" class="addBtn">Add</span>
-      
-      </div>
-	
+
+    </div>
+
       <script>
         var input = document.getElementById("myInput");
         input.addEventListener("keypress", function(event) {
@@ -469,7 +510,7 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
           }
         });
       </script>
-	
+
       <ul id="myUL">
         
       </ul>
@@ -532,8 +573,6 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
       }
       
       </script>
-
-  
 </div>
 
   
