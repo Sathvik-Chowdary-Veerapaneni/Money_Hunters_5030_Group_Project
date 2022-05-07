@@ -72,6 +72,7 @@ def change_username():
         db = get_db()
         db.execute("UPDATE user SET username =? WHERE email=?",(new_username,email))
         db.commit()
+        return redirect(url_for("index"))
     return render_template("settings.html",passing_token=current_app.config['TOKEN'])
 
 @bp.route("/login",methods=("GET","POST"))
