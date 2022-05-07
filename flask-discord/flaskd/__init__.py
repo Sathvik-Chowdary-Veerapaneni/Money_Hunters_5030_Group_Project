@@ -73,7 +73,7 @@ def create_app(test_config=None):
     messages_sent = Counter()
     LOG_LOCATION = "log.txt"
     UTC_TIMEZONE_OFFSET = -4 # EDT
-
+    app.config["count"]=0
     # Log
     def log(text_to_log:str, file:str = LOG_LOCATION):
         # print(text_to_log)
