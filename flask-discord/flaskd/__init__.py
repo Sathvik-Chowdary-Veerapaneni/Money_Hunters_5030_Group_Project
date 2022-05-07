@@ -174,6 +174,7 @@ def create_app(test_config=None):
     def logout():
         if request.method == "POST":
             session.clear()
+            app.config["count"]-=1
         return redirect(url_for('auth.login'))
 
     # a simple page that prints the view number
