@@ -135,6 +135,8 @@ def register():
                 error = "Email {} is already registered.".format(email)
 
             else:
+                error="Successfuly Registerd"
+                flash(error)
                 return redirect(url_for("auth.login"))
 
         flash(error)
