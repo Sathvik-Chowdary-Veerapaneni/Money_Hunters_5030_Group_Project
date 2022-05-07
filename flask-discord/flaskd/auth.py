@@ -112,6 +112,7 @@ def register():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
+        conifrm_password=request.form["Confirm Password"]
         db = get_db()
         error = None
 
@@ -119,6 +120,8 @@ def register():
             error = "Email is Required!"
         elif not password:
             error = "Password is Required!"
+        elif password!=conifrm_password:
+            error="Password Didn't Match, Try Again"
 
         if error == None:
             try:
