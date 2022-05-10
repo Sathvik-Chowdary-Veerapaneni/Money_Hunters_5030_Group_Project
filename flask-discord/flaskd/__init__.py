@@ -59,20 +59,18 @@ def create_app(test_config=None):
         return redirect(url_for('static', filename='uploads/' + filename), code=301)
         ### uploading image ending #####
 
-    # Counter class for user number
-    class Counter:
-        def __init__(self, initial_value:int = 0): self.count = initial_value
-        def change(self, by:int = 1): self.count += by
 
     # Setup
     # app = flask.Flask(__name__, template_folder = "template")
     app.config["SECRET_KEY"] = "TOTALLY_SECURE"
     socket_io = flask_socketio.SocketIO(app)
     user_database = {} #dict file to sotre msgs
-    users_connected = Counter() 
-    messages_sent = Counter()
+    # users_connected = Counter() 
+    # messages_sent = Counter()
     LOG_LOCATION = "log.txt"
     UTC_TIMEZONE_OFFSET = -4 # EDT
+
+    #config counter to count upon user login and logout
     app.config["count"]=0
     # Log
     def log(text_to_log:str, file:str = LOG_LOCATION):
@@ -86,29 +84,38 @@ def create_app(test_config=None):
     # User connection handler
     @socket_io.on("user_connection")
     def user_connect_handler(data:dict):
-        users_connected.change(by = 1)
-        flask_socketio.send(f"{data['username']} has joined the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        # users_connected.change(by = 1)
+        flask_socketio.send("{} has joined the chatroom! There are now {} users in this chatroom.".format(data['username'],app.config["count"]))
+        # flask_socketio.send(f"{data['username']} has joined the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        # obj=User_Count()
+        # obj.add_user_count()
         # Add to database
         user_database[flask.request.sid] = data["username"]
-
         log(text_to_log = f"{flask.request.sid}: {data['username']} joined | Database: {user_database} | {get_current_time()}")
 
     # User disconnection handler
     @socket_io.on("disconnect")
-    def user_disconnection_handler():
+    def user_disconnection_handler(data:dict):
         # username = user_database[flask.request.sid]
-        username = g.user["username"]
-        users_connected.change(by = -1)
-        flask_socketio.send(f"{username} has left the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        # username = g.user["username"]
+        # obj=User_Count()
+        # obj.sub_user_count()
+        flask_socketio.send("{} has left the chatroom! There are now {} users in this chatroom.".format(data['username'],app.config["count"]))
+        
+        # flask_socketio.send("{} has joined the chatroom! There are now {} users in this chatroom.".format(username,app.config["count"]))
+
+        # users_connected.change(by = -1)
+        # flask_socketio.send(f"['username'] has left the chatroom! There are now {users_connected.count} users in this chatroom.", broadcast = True)
+        
         # Remove from database
         del user_database[flask.request.sid]
-
-        log(text_to_log = f"{flask.request.sid}: {username} left | Database: {user_database} | {get_current_time()}")
-
+        # log(text_to_log = f"{flask.request.sid}: {username} left | Database: {user_database} | {get_current_time()}")
+        log(text_to_log = f"{flask.request.sid}:{data['username']} left | Database: {user_database} | {get_current_time()}")
+  
     # Send message handler
     @socket_io.on("send_message")
     def send_message_handler(data:dict):
-        messages_sent.change(by = 1)
+        # messages_sent.change(by = 1)
         flask_socketio.send(f"{user_database[flask.request.sid]}: {data['message']}", broadcast = True)
         log(text_to_log = f"{flask.request.sid}: {user_database[flask.request.sid]} sent message with data: \"{data}\" | Database: {user_database} | {get_current_time()}")
 
@@ -119,15 +126,8 @@ def create_app(test_config=None):
         flask_socketio.send(message, broadcast = True)
 
         log(text_to_log = f"Sending message to all: {message} | {get_current_time()}")
+   
     # Website navigation =============================================================================
-
-    # Chatroom
-    @app.route("/chatroom", methods = ["POST", "GET"])
-    def chatroom():
-        # Send to chatroom with username
-        username = g.user["username"]
-        return flask.render_template("chatroom.html", username = username)
-
     # Run
     if __name__ == "__main__":
         socket_io.run(app)
@@ -173,7 +173,9 @@ def create_app(test_config=None):
     def logout():
         if request.method == "POST":
             session.clear()
+            #reducing user count when logged out
             app.config["count"]-=1
+            print(app.config["count"],'logout')
         return redirect(url_for('auth.login'))
 
     # a simple page that prints the view number
