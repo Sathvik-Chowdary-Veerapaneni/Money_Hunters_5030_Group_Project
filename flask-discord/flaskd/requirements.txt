@@ -16,6 +16,7 @@ MarkupSafe==2.1.1
 packaging==21.3
 pluggy==1.0.0
 py==1.11.0
+PyJWT==1.7.1
 pyparsing==3.0.8
 pytest==7.1.1
 python-engineio==4.3.1

@@ -67,7 +67,7 @@ def login_required(view):
 def change_username():
     if request.method == "POST":
         new_username=request.form["uname"]
-        email=request.form['email']
+        # email=request.form['email']
         # print(new_username)
         db = get_db()
         db.execute("UPDATE user SET username =? WHERE email=?",(new_username,email))
