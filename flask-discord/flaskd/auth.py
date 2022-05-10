@@ -1,6 +1,8 @@
+from distutils.log import error
 import email
+from email import message
 import functools
-
+import time
 from flask import ( 
         Blueprint, flash, g, redirect, render_template, request, session, url_for
         )
@@ -65,15 +67,27 @@ def login_required(view):
 @login_required
 @token_required
 def change_username():
+    # error=None
     if request.method == "POST":
         new_username=request.form["uname"]
         # email=request.form['email']
         # print(new_username)
         db = get_db()
+        #Query in db wether email existed or not
+        # user_email=db.execute("SELECT email from user WHERE email = ?",(email,))
+        # print(email,user_email.fetchone)
+        # if email!=user_email:
+            # error = "Incorrect Email Provided!"
+        # elif email is user_email:
+        email=current_app.config['user_email']
+        error= "Username Changed Successfully"
+        
+        # time.sleep(1)
         db.execute("UPDATE user SET username =? WHERE email=?",(new_username,email))
         db.commit()
         return redirect(url_for("index"))
-    return render_template("settings.html",passing_token=current_app.config['TOKEN'])
+        
+    return render_template("settings.html",passing_token=current_app.config['TOKEN'],message=flash)
 
 @bp.route("/login",methods=("GET","POST"))
 def login():
@@ -82,9 +96,8 @@ def login():
         password = request.form["password"]
         db = get_db()
         error = None
-        user = db.execute("SELECT * FROM user WHERE email = ?", (email,)
-                ).fetchone()
-        
+        user = db.execute("SELECT * FROM user WHERE email = ?", (email,)).fetchone()
+
         if user == None: 
             error = "Incorrect Email Provided!" 
             
@@ -99,10 +112,13 @@ def login():
                 "user_ID":user["id"],
                 "user_password":user["password"]
                 }
+            current_app.config['user_email']=user["email"]
             current_app.config['TOKEN']=jwt.encode({'data':payload, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)},current_app.config['SECRET_KEY'])
             print(current_app.config['TOKEN'])
             make_response(jsonify({'token':current_app.config['TOKEN'].decode('UTF-8')}),201)
+            #adding user count while logging in
             current_app.config["count"]+=1
+            print(current_app.config["count"],'login')
             return redirect(url_for("index"))
         flash(error)
 
@@ -124,7 +140,6 @@ def register():
             error = "Password is Required!"
         elif password!=conifrm_password:
             error="Password Didn't Match, Try Again"
-
         if error == None:
             try:
                 db.execute("INSERT INTO user (email,password) VALUES (?, ?)", (email, generate_password_hash(password)))
