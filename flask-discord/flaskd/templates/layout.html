@@ -1,93 +1,17 @@
+
+   
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   
-body {
-  font-family: "verdana", sans-serif;
-  font-size: 20px;
-}
-.roombtn {
-  background-color: #4267B2;
-   border: none;
-   color: white;
-   padding: 11px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 15px;
-   margin: 1px 1px;
-   border-radius: 10%;
-}
-
-.room {
-  position: relative;
-  display: inline-block;
-}
-
-.room-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.room-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.room-content a:hover {background-color: #ddd;}
-
-.room:hover .room-content {display: block;}
-
-.room:hover .roombtn {background-color: #4267B2;}
-.settingsbtn {
-  background-color: #4267B2;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
-.settings {
-  position: relative;
-  display: inline-block;
-}
-
-.settings-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.settings-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.settings-content a:hover {background-color: #ddd;}
-
-.settings:hover .settings-content {display: block;}
-
-.settings:hover .settingsbtn {background-color: #1c1f1c;}
 
 div.c {
   text-align: right;
 } 
-.chat_areaoverflow_scroll{
-  width: calc(100vw - 50vw);
-    height: calc(100vw - 50vw);
-    overflow: scroll;
-}
 * {box-sizing: border-box}
 body {font-family: "Lato", sans-serif;}
 
@@ -134,10 +58,6 @@ body {font-family: "Lato", sans-serif;}
   border-left: none;
   height: 300px;
 }
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
-
-
 
 
 
@@ -149,9 +69,9 @@ body {font-family: "Lato", sans-serif;}
  
   
   .button5{
-   background-color: #4267B2;
+   background-color: #000805;
    border: none;
-   color: white;
+   color: rgb(249, 246, 246);
    padding: 11px;
    text-align: center;
    text-decoration: none;
@@ -165,13 +85,13 @@ body {font-family: "Lato", sans-serif;}
     width: 5px;
   }
   *::-webkit-scrollbar-track {
-    background: white;
+    background: #f1f1f1;
   }
   *::-webkit-scrollbar-thumb {
-    background: #4267B2;
+    background: #aaa;
   }
   *::-webkit-scrollbar-thumb:hover {
-    background: white;
+    background: rgb(244, 241, 241);
   }
   
   .chat-footer {
@@ -201,6 +121,16 @@ body {font-family: "Lato", sans-serif;}
     color: #555;
     resize: none;}
     body {
+  margin: 0;
+  min-width: 250px;
+}
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+body {
   margin: 0;
   min-width: 250px;
 }
@@ -240,8 +170,22 @@ ul li:nth-child(odd) {
 
 /* Darker background-color on hover */
 
+
 /* When clicked on, add a background color and strike out text */
 
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
 
 /* Style the close button */
 .close {
@@ -258,7 +202,7 @@ ul li:nth-child(odd) {
 
 /* Style the header */
 .header {
-  background-color: white;
+  
   padding: 30px 40px;
   color: white;
   text-align: center;
@@ -276,7 +220,6 @@ input {
   margin: 0;
   border: none;
   border-radius: 0;
-  border: 2px solid #4267B2;
   width: 75%;
   padding: 10px;
   float: left;
@@ -285,177 +228,280 @@ input {
 
 /* Style the "Add" button */
 .addBtn {
-  background-color: #4267B2;
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 1px 1px;
-    border-radius: 10%;
+  padding: 10px;
+  width: 5%;
+  background: ;
+  color:#4267B2;
+  float: left;
+  text-align: center;
+  font-size: 25px;
+ 
 }
 
 .addBtn:hover {
-  background-color: #bbb;
-}	
-.profile {
-            font-family: sans-serif;
-            text-align:center;
-            max-width: 250px;
-            /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
-            padding: 20px;
-        }
-        .profile__image{
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-            display: block;
-        }
-        .profile__name{
-            font-size: 1.2em;
-            font-style: bold;
-        }
+  background-color:white;
+}
+
 .chat_areaoverflow_scroll{
   overflow: scroll;
 }
-.todolist_scroll{
-  overflow: scroll;
+#search {
+    display: block;
+    border: 2px solid #4267B2;
+    font-size: 16px;
+    padding: 10px 10px;
+    width: 93%;
+    background: #fff;
+    padding-left: 40px;
+    border-radius: 20px;
+    outline: none !important;
+    box-sizing: border-box;
+}
+#list {
+    display: block;
+    border: 2px solid #4267B2;
+    font-size: 16px;
+    padding: 10px 10px;
+    width: 80%;
+    background: #fff;
+    padding-left: 40px;
+    border-radius: 20px;
+    outline: none !important;
+    box-sizing: border-box;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4267B2;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.icon-demo-examples .bi {
+    width: 2em;
+    height: 2em;
+}
+.bi {
+    display: inline-block;
+    vertical-align: -0.125em;
+}
+.btns-secondary {
+    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+}.btns {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 2.5;
+    color: #4267B2;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
+}
+table {
+    border: 1px solid #4267B2;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table td, table th {
+    border: 1px solid #4267B2 ;
+}
+table tr td {
+    border-right: 0;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+table tr td:first-child, table tr th:first-child {
+    border-left: 0;
+}
+table tr td {
+    border-top: 0;
+}
+.btnn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.btnn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}#imgDiv{
+  width: 300px;
+  height: 300px;
+  background-image: url("path_to_your_profile.png");
+  background-position: -25px -20px;  
+  border-radius: 50%;
+  background-size: cover;
+
+}
+.avatar {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 75%;
+}
+.icon-bar {
+  width: 100%;
+  background-color:#4267B2;
+  overflow: auto;
 }
 
-h1 {
-
-color: white;
+.icon-bar a {
+  float: left;
+  width: 5%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color:white;
+  font-size: 36px;
 }
+
+
+
+
+.active {
+  background-color: #4267B2;
+}
+p {
+  font-size: 18px;
+}
+
 
 </style>
 <title> MONEY HUNTERS </title>
 
 </head>
-<body style="background-color: black;"> 
+<body style="background-color:white"> 
+  
 <center>
 <table>
   
 <tr>
   
-<td colspan="3" height="50" bgcolor="#4267B2">
- 
-  <center> 
-
-<h1 class="font-effect-fire">Chat Hub <h1> </center>
-  <form action="/logout" method="post">
-    <div class="c">
-      <!-- logout button -->
-      <button style='font-size:24px'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
-              <path d="M7.5 1v7h1V1h-1z"/>
-              <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-            </svg> <i class='fas fa-sign-out-alt'></i>
-  </form>
-      </button>
-   </div>
-
-    <!-- <div class="c">
-      <button style='font-size:24px'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
-              <path d="M7.5 1v7h1V1h-1z"/>
-              <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-            </svg>logout <i class='fas fa-sign-out-alt'></i>
-      </div> -->
-      </form>
+<td colspan="3" height="80" width="1100" bgcolor="#4267B2">
+ <center> <h2 style="font-size: 2rem; color: white">{{username}}</h2> </center>     
 </td>
 
 
 
 <tr valign="top">
 <td bgcolor="white" height="500"  width="250">
-
-<form class = "chat_area" method = "POST">
-  
   <center>
-      <div class="profile">
-          <image src="{{ url_for('static', filename = 'images/dp.png')}}" alt="profile image" class="profile__image">
-          <div class="profile__name"> {{username}}</div>
-      </div>
-      <br>
-      <div id="MyClockDisplay"></div>
-      <script type="text/javascript">
-        function showTime(){
-          var date = new Date();
-          var h = date.getHours();
-          var m = date.getMinutes();
-          var s = date.getSeconds();
-          var session ="AM";
-          
-          if(h==0){
-            h=12;
-          }
-          if(h>12){
-            h = h-12;
-            session = "PM";
-          }
-    
-          h = (h < 10) ? "0" + h:h;
-          m = (m < 10) ? "0" + m:m;
-          s = (s < 10) ? "0" + s:s;
-    
-          var time = h + ":" + m +":" + s + " " +session;
-          document.getElementById("MyClockDisplay").innerText = time;
-          document.getElementById("MyClockDisplay").textContent = time;
-    
-          setTimeout(showTime,1000);
-        }
-    
-        showTime();
-      </script>
-      <br>
-    </center>
-</form>
-
-
-<center>
-  <div class="settings">
-    <button class="roombtn">settings</button>
-      <div class="settings-content">
-        <a href="/auth/settings?token={{passing_token}}" class="btn btn-primary btn-sm"> Change Username </a>  
-      </div>
+  <div>
+    <form action="/logout" method="post">
+    <a href="/auth/login" class="btn btn-primary btn-sm">Logout<i class="bi bi-power"></i></a>
   </div>
-</center>
 
+  <a href="/auth/settings?token={{passing_token}}" class="btn btn-primary btn-sm"> Change Username<i class="bi bi-pen-fill"></i></a>
+  </center>  <br>
+<form class = "chat_area" action = "/chatroom", method = "POST">
+<center>
+    <div id="MyClockDisplay" ></div>
+    <script type="text/javascript">
+      function showTime(){
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var session ="AM";
+        
+        if(h==0){
+          h=12;
+        }
+        if(h>12){
+          h = h-12;
+          session = "PM";
+        }
+  
+        h = (h < 10) ? "0" + h:h;
+        m = (m < 10) ? "0" + m:m;
+        s = (s < 10) ? "0" + s:s;
+  
+        var time = h + ":" + m +":" + s + " " +session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+  
+        setTimeout(showTime,1000);
+      }
+  
+      showTime();
+    </script><br>
+      
+</form>
+</center>
 </td>
 
 <td  bgcolor= "white" height="600" width="850">
-  
   <center>          
-    <div class="mb-3">
-      <!-- <label for="Email" class="form-label">Email</label> -->
-      <input type="text" class="form-control" id="message_input" size="=50"  placeholder=" Type your Message..." onfocus="this.value=''" value="" name="message_input">
-    </div>
-
-    <!-- <div class="mb-3">
-    <label>
-      <input type = "text" id = "message_input" size="50" placeholder="Type Your Message..." name="message_input">
-    </label>
-  </div> -->
-  <div>
-    <button type = "button" id = "send_button" class = "button5">Send </button>
-  </div>
   
-<script>
-  var input = document.getElementById("message_input");
-  input.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      document.getElementById("send_button").click();
-      document.getElementById('message_input').click();
-    }
-  });
-</script>
+    <div id="search_bar">
+      <input  autocomplete="off" type="text" id="search" size="=50"  placeholder=" Type your Message..." onfocus="this.value=''" value="" name="search">
+      <!-- <input id="search" placeholder="Type Your Message..." > -->
+      <div id="autocomplete_holder"> 
+          <div id="autocomplete" style="display: none;"></div>
+      </div>
+  </div>
+  <button type="button" id = "send_button" class="btn btn-secondary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+<path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"></path>
+</svg>
+  </button>
+  </center>
 
-  <div class = "chat_areaoverflow_scroll" class="header" id = "chat_area" style = "height: 600px;">
+  <script>
+    var input = document.getElementById("search");
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("send_button").click();
+        document.getElementById("search").click();
+      }
+    });
+  </script>
+  
+  <div class = "chat_areaoverflow_scroll" id = "chat_area" style = "height: 600px;">
       
       <ul id = "message_ul"></ul>
   </iframe>
@@ -468,7 +514,7 @@ color: white;
 // Setup
 const socket = io("http://127.0.0.1:5000");
 const username = "{{ username }}";
-const message_html = document.getElementById("message_input");
+const message_html = document.getElementById("search");
 const messages_html = document.getElementById("message_ul");
 const chat_area_html = document.getElementById("chat_area")
 document.getElementById("send_button").addEventListener("click", send_message)
@@ -491,31 +537,30 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
 
 
 </td>
-<td  class = "chat_areaoverflow_scroll" bgcolor= "white" height="600" width="250">
+<td class = "chat_areaoverflow_scroll" bgcolor= "white" height="600" width="250">
 <center>
-  <h3 style="margin:5px">My To Do List</h3>
-    
-    <div id="myDIV" class="header">
-        <input type="text" id="myInput" placeholder="Title...">
-        <span onclick="newElement()" class="addBtn">Add</span>
+  
+  <h3 style="margin:5px; color:#4267B2" >My To Do List</h3>
+<div id="myDIV" class="header">   
+  <input type="text"  id="list" placeholder="Title..." >
+  <span onclick="newElement()" class="addBtn">+</span>
+ 
+</div>
 
-    </div>
+<ul id="myUL">
+  
+</ul>
 
-      <script>
-        var input = document.getElementById("myInput");
-        input.addEventListener("keypress", function(event) {
-          if (event.key === "Enter") {
-            event.preventDefault();
-            document.getElementById(newElement()).click();
-          }
-        });
-      </script>
+
+
+<br>
 
       <ul id="myUL">
         
       </ul>
       
       <script>
+
       // Create a "close" button and append it to each list item
       var myNodelist = document.getElementsByTagName("LI");
       var i;
@@ -548,7 +593,7 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
       // Create a new list item when clicking on the "Add" button
       function newElement() {
         var li = document.createElement("li");
-        var inputValue = document.getElementById("myInput").value;
+        var inputValue = document.getElementById("list").value;
         var t = document.createTextNode(inputValue);
         li.appendChild(t);
         if (inputValue === '') {
@@ -556,7 +601,7 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
         } else {
           document.getElementById("myUL").appendChild(li);
         }
-        document.getElementById("myInput").value = "";
+        document.getElementById("list").value = "";
       
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
@@ -571,7 +616,6 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
           }
         }
       }
-      
       </script>
 </div>
 
