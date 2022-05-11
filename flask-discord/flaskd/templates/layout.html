@@ -540,19 +540,20 @@ function send_message() { socket.emit("send_message", {"message": message_html.v
 <td class = "chat_areaoverflow_scroll" bgcolor= "white" height="600" width="250">
 <center>
   
-  <h3 style="margin:5px; color:#4267B2" >My To Do List</h3>
+  <h3 style="margin:5px">My To Do List</h3>
 <div id="myDIV" class="header">   
   <input type="text"  id="list" placeholder="Title..." >
   <span onclick="newElement()" class="addBtn">+</span>
- 
 </div>
-
-<ul id="myUL">
-  
-</ul>
-
-
-
+<script>
+  var input = document.getElementById("list");
+  input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById(newElement()).click();
+    }
+  });
+</script>
 <br>
 
       <ul id="myUL">
