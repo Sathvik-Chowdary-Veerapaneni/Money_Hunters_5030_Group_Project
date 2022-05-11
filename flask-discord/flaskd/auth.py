@@ -128,9 +128,11 @@ def login():
 def register():
     """ Registers user from regiseter.html form submission"""
     if request.method == "POST":
+        username=request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
         conifrm_password=request.form["Confirm Password"]
+
         db = get_db()
         error = None
 
@@ -142,8 +144,7 @@ def register():
             error="Password Didn't Match, Try Again"
         if error == None:
             try:
-                db.execute("INSERT INTO user (email,password) VALUES (?, ?)", (email, generate_password_hash(password)))
-
+                db.execute("INSERT INTO user (username,email,password) VALUES (?, ?,?)", (username,email, generate_password_hash(password)))
                 db.commit()
             
             except db.IntegrityError:
